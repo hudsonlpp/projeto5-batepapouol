@@ -55,3 +55,32 @@ body{
     border: none;
     color: #000000;
 }
+
+.mensagem-status{
+    width: 375px;
+    height: 40px;
+    background: #DCDCDC;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+
+}
+
+.mensagem-publica{
+    width: 375px;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.mensagem-privada{
+    width: 375px;
+    height: 63px;
+    background: #FFDEDE;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+
+}
