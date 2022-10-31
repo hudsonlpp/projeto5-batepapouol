@@ -55,19 +55,19 @@ function receberMensagens(resposta){
     mensagens.forEach((mensagem)=>{
         if(mensagem.type == 'status'){
             chat.innerHTML+= `<div class="mensagem-status">
-            <span>(${mensagem.time})</span>
-            <span><strong>${mensagem.from}</strong> ${mensagem.text}</span> 
+            <span class="time">(${mensagem.time})  </span>
+            <span class="message"><strong class="str">${mensagem.from}   </strong> ${mensagem.text}</span> 
         </div>`
         } else if(mensagem.type == 'message'){
             chat.innerHTML+= ` <div class="mensagem-publica">
-            <span>(${mensagem.time})</span>
-            <span><strong>${mensagem.from}</strong>para <strong>${mensagem.to}</strong>: ${mensagem.text}</span> 
+            <span class="time">(${mensagem.time})  </span>
+            <span class="message"><strong class="str">${mensagem.from}   </strong>para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
         </div>`
         } else{
             if(mensagem.from == usuario || mensagem.to == usuario || mensagem.to == 'todos'){
             chat.innerHTML+=`<div class="mensagem-privada">
-                <span>(${mensagem.time})</span>
-                <span><strong>${mensagem.from}</strong> reservadamente para <strong>${mensagem.to}</strong>: ${mensagem.text}</span> 
+                <span class="time">(${mensagem.time})  </span>
+                <span class="message"><strong class="str">${mensagem.from}   </strong> reservadamente para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
             </div>`
             }
         }
@@ -80,14 +80,15 @@ function erroNoServidor(){
 }
 
 function enviarMensagem(){
-    const mensagem = {
-        from: "nome do usuário",
-        to: "nome do destinatário (Todos se não for um específico)",
-        text: "mensagem digitada",
-        type: "message" // ou "private_message" para o bônus
+    const input=document.querySelector('.campo-texto');
+    if(input.value){
+    const texto = {
+        from: usuario,
+        to: 'Todos',
+        text: input.value,
+        type: 'message'
     }
-    const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-  //  promessa.then(tratarSucesso); 
-  //  promessa.catch(tratarErro);
-
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', texto);
+    input.value="";
+    }
 }
