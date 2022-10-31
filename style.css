@@ -77,15 +77,16 @@ body{
 
 .mensagem-status{
     width: 100%;
-    overflow-x: hidden ;
-    flex-wrap: wrap;
-
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
     background: #DCDCDC;
     border: 2px;
     display: flex;
     padding-left: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-right: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-top: 4px;
     margin-bottom: 4px;
 
@@ -94,15 +95,16 @@ body{
 
 .mensagem-publica{
     width: 100%;
-    overflow-x: hidden ;
-    flex-wrap: wrap;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
     background: #FFFFFF;
     border: 2px;
     display: flex;
     padding-left: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-
+    padding-right: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-top: 4px;
     margin-bottom: 4px;
 
@@ -111,28 +113,29 @@ body{
 .mensagem-privada{
     width: 100%;
     overflow-x: hidden ;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     background: #FFDEDE;
     border: 2px;
     display: flex;
     padding-left: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-
+    padding-right: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.time, .message{
-    word-wrap: break-word;
-}
-
 .time{
     color: #AAAAAA;
+    display: inline-block;
+    word-wrap: break-word;
+
 }
 
 .message{
     padding-left: 10px;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .botao{

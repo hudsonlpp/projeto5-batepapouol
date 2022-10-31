@@ -1,12 +1,15 @@
+//variáveis globais//
+
 let mensagens =[];
 let nome="";
 const elementoQueQueroQueApareca = document.querySelector('.mensagem');
-//elementoQueQueroQueApareca.scrollIntoView();
 let usuario = prompt("qual seu lindo nome?");
 let manterOnline = true;
 let podeObterMensagens = true;
 setInterval(buscarMensagens, 3000);
 login();
+
+//função que pede o nome do usuário e manda pro servidor//
 
 function login(){
     const user = {
@@ -39,6 +42,7 @@ function tratarError(){
     usuario = prompt("Este nome já está sendo utilizado, por favor insira um nome válido"); 
 }
 
+// funções que recebem todas as mensagens do bate papo //
 
 function buscarMensagens(){
     if(podeObterMensagens == true){
@@ -56,28 +60,31 @@ function receberMensagens(resposta){
         if(mensagem.type == 'status'){
             chat.innerHTML+= `<div class="mensagem-status">
             <span class="time">(${mensagem.time})  </span>
-            <span class="message"><strong class="str">${mensagem.from}   </strong> ${mensagem.text}</span> 
+            <span class="message"><strong class="str">${mensagem.from} </strong> ${mensagem.text}</span> 
         </div>`
         } else if(mensagem.type == 'message'){
             chat.innerHTML+= ` <div class="mensagem-publica">
             <span class="time">(${mensagem.time})  </span>
-            <span class="message"><strong class="str">${mensagem.from}   </strong>para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
+            <span class="message"><strong class="str">${mensagem.from} </strong>para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
         </div>`
         } else{
             if(mensagem.from == usuario || mensagem.to == usuario || mensagem.to == 'todos'){
             chat.innerHTML+=`<div class="mensagem-privada">
                 <span class="time">(${mensagem.time})  </span>
-                <span class="message"><strong class="str">${mensagem.from}   </strong> reservadamente para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
+                <span class="message"><strong class="str">${mensagem.from} </strong> reservadamente para <strong class="str">${mensagem.to}</strong>: ${mensagem.text}</span> 
             </div>`
             }
         }
     });
+    chat.lastElementChild.scrollIntoView()
     podeObterMensagens = true;
 }
 
 function erroNoServidor(){
     podeObterMensagens = true;
 }
+
+//função que envia uma nova mensagem pra conversa ao clicar no botão de enviar//
 
 function enviarMensagem(){
     const input=document.querySelector('.campo-texto');
@@ -92,3 +99,10 @@ function enviarMensagem(){
     input.value="";
     }
 }
+
+document.querySelector('.campo-texto').addEventListener('keydown', function(event){
+    if(event.code=='Enter'){
+        enviarMensagem();
+    }
+})
+
